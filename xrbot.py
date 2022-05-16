@@ -2,11 +2,9 @@ import os
 from dotenv import load_dotenv
 import logging
 from aiogram.types import BotCommand
-from aiogram import Bot, Dispatcher, executor, types, asyncio
-# from aiogram.utils.exceptions import BotCommand
-# from rooms import room_start
+from aiogram import Bot, Dispatcher, asyncio
+
 from app.handlers.common import register_handlers_common
-from app.handlers.rooms import register_handlers_room
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 
@@ -17,7 +15,6 @@ async def set_commands(bot: Bot):
     commands = [
         BotCommand(command="/start", description='Start'),
         BotCommand(command="/rooms", description='Rooms'),
-        BotCommand(command="/cancel", description='Cancel the current action')
     ]
     await bot.set_my_commands(commands)
 
@@ -36,7 +33,6 @@ async def main():
     dp = Dispatcher(bot, storage=MemoryStorage())
 
     register_handlers_common(dp)
-    register_handlers_room(dp)
 
     await set_commands(bot)
 
