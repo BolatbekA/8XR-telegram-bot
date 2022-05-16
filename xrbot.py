@@ -26,7 +26,9 @@ async def main():
 
     logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        level=logging.INFO)
+        filename='main.log',
+        level=logging.INFO
+        )
     logger.error("Starting bot")
 
     bot = Bot(secret_token)
